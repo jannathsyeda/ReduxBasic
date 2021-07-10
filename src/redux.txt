@@ -1,0 +1,52 @@
+site-- https://react-redux.js.org/introduction/getting-started
+
+for use redux in a running react app
+command- npm install react-redux redux
+
+for store--
+site-- https://redux.js.org/tutorials/fundamentals/part-4-store
+
+**src/store.js
+import { createStore } from 'redux'
+import cartReduce from './../reducer/CartReduce';
+
+const store = createStore(cartReduce);
+
+export default store
+---------------
+**add provider in index.js
+
+import { Provider } from 'react-redux';
+
+
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+
+
+-------------------
+*connecting any component with redus
+import-------------
+import { connect } from 'react-redux';
+import { addToCart } from './../../redux/actions/CartActions';
+
+
+site-- https://react-redux.js.org/tutorials/connect
+
+const mapStateToProps = state =>{
+    return {
+        cart:state.cart,
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = {
+    addToCart: addToCart
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);
+
+
